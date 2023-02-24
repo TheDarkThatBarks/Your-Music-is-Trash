@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
     new ArrowBox(df::Vector(10, 10), DOWN);
 
     RM.loadSprite("arrow-sprite.txt", "arrow");
-    Arrow* arrow = new Arrow(DOWN);
-    arrow->setPosition(df::Vector(10, 0));
+    Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
+    //arrow->setPosition(df::Vector(10, 0));
 
     GM.run();
 

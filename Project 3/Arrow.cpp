@@ -2,10 +2,11 @@
 #include "EventCollision.h"
 #include "LogManager.h"
 
-Arrow::Arrow(Direction d) {
+Arrow::Arrow(df::Vector pos, Direction d) {
 	setType("Arrow");
 	setSprite("arrow");
 	dir = d;
+	setPosition(pos);
 	setVelocity(df::Vector(0, 0.25));
 }
 

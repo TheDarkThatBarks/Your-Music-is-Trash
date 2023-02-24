@@ -12,6 +12,7 @@ class ArrowBox : public df::Object {
 	df::Box bottomBig;
 	df::Box bottomSmall;
 	Arrow* arrow;
+	bool floatComp(std::string comp, float f1, float f2);
 
 	public:
 	ArrowBox(df::Vector pos, Direction d);

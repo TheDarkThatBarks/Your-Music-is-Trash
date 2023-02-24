@@ -15,6 +15,6 @@ class Arrow : public df::Object {
 	Direction dir;
 
 	public:
-	Arrow(Direction d);
+	Arrow(df::Vector pos, Direction d);
 	int eventHandler(const df::Event* p_e) override;
 };
