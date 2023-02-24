@@ -1,20 +1,30 @@
 #include "GameManager.h"
 #include "LogManager.h"
+#include "ResourceManager.h"
+#include "ArrowBox.h"
+#include "Arrow.h"
 
 int main(int argc, char* argv[]) {
 
     // Start up game manager.
-    df::GameManager& game_manager = df::GameManager::getInstance();
-    if (game_manager.startUp()) {
-        df::LogManager& log_manager = df::LogManager::getInstance();
-        log_manager.writeLog("Error starting game manager!");
-        game_manager.shutDown();
+    if (GM.startUp()) {
+        LM.writeLog("Error starting game manager!");
+        GM.shutDown();
         return 0;
     }
 
     // Show splash screen.
-    df::splash();
+    //df::splash();
+
+    RM.loadSprite("arrow-box-sprite.txt", "arrow-box");
+    new ArrowBox(df::Vector(10, 10), DOWN);
+
+    RM.loadSprite("arrow-sprite.txt", "arrow");
+    Arrow* arrow = new Arrow(DOWN);
+    arrow->setPosition(df::Vector(10, 0));
+
+    GM.run();
 
     // Shut everything down.
-    game_manager.shutDown();
+    GM.shutDown();
 }
