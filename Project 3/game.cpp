@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
     //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
     //arrow->setPosition(df::Vector(10, 0));
-    new ArrowSpawner(up, down, left, right, "test.txt");
+    new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
 
     GM.run();
 

@@ -28,16 +28,16 @@ ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, s
 			bool d = false;
 			for (int i = 0; i < line.length(); i++) {
 				char c = line.at(i);
-				if (c == 'W' && !w) {
+				if ((c == 'W' || c == 'w') && !w) {
 					arrowsOnBeat.push_back(UP);
 					w = true;
-				} else if (c == 'S' && !s) {
+				} else if ((c == 'S' || c == 's') && !s) {
 					arrowsOnBeat.push_back(DOWN);
 					s = true;
-				} else if (c == 'A' && !a) {
+				} else if ((c == 'A' || c == 'a') && !a) {
 					arrowsOnBeat.push_back(LEFT);
 					a = true;
-				} else if (c == 'D' && !d) {
+				} else if ((c == 'D' || c == 'd') && !d) {
 					arrowsOnBeat.push_back(RIGHT);
 					d = true;
 				}
