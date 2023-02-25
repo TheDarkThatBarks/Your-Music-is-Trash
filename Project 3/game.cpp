@@ -31,6 +31,9 @@ int main(int argc, char* argv[]) {
     //arrow->setPosition(df::Vector(10, 0));
     new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
 
+    RM.loadMusic("Stage1-song.wav", "stage1");
+    RM.getMusic("stage1")->play();
+
     GM.run();
 
     // Shut everything down.
