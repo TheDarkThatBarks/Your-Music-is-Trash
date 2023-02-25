@@ -24,12 +24,42 @@
     <ClCompile Include="Arrow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ArrowSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RightArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UpArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DownArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrowBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrowSpawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftArrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RightArrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UpArrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DownArrow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

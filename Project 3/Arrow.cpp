@@ -2,12 +2,18 @@
 #include "EventCollision.h"
 #include "LogManager.h"
 
-Arrow::Arrow(df::Vector pos, Direction d) {
+Arrow::Arrow() {
 	setType("Arrow");
-	setSprite("arrow");
-	dir = d;
-	setPosition(pos);
+	dir = UP;
 	setVelocity(df::Vector(0, 0.25));
+}
+
+Direction Arrow::getDir() const {
+	return dir;
+}
+
+void Arrow::setDir(Direction d) {
+	dir = d;
 }
 
 int Arrow::eventHandler(const df::Event* p_e) {
