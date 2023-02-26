@@ -10,15 +10,36 @@ Files:
 		-Arrow.h, Arrow.cpp
 		-ArrowBox.h, ArrowBox.cpp
 		-ArrowSpawner.h, ArrowSpawner.cpp
+		-Player.h, Player.cpp
+		-Boss.h, Boss.cpp
 	-Audio:
-		-Stage1-Song.mp3 (8 Bit Surf) by David Renda
-		-Stage1-Song.txt 
+		-Stage1-Song.txt (Stage1-Song.mp3 (8 Bit Surf) by David Renda)
 	-Graphics:
 		-arrow-box-sprite.txt
 		-arrow-sprite.txt
-		-brick-box-background-sprite.txt
+		-boss1-sprite.txt
+		-down-arrow-sprite.txt
+		-left-arrow-sprite.txt
+		-up-arrow-sprite.txt
+		-right-arrow-sprite.txt
+		-player-sprite.txt
 
 Code Structure:
+	-Object
+		-Player
+		-Arrow
+		-Boss
+		-ArrowBox
+		-ArrowSpawner
+	-Event
+		-Arrow
+			-RightArrow
+			-LeftArrow
+			-UpArrow
+			-DownArrow
+			-Arrow
+				-ArrowBox
+					-ArrowSpawner
 
 How to Compile:
 
