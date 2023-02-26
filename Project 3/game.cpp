@@ -5,6 +5,8 @@
 #include "Arrow.h"
 #include "ArrowSpawner.h"
 #include "Combometer.h"
+#include "Player.h"
+#include "Boss.h"
 
 int main(int argc, char* argv[]) {
 
@@ -31,6 +33,8 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/player-sprite.txt", "player");
     RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
 
+    new Player();
+    new Boss();
 
     //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
     //arrow->setPosition(df::Vector(10, 0));
