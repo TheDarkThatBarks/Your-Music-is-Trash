@@ -11,6 +11,7 @@ ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setSprite("arrow-box");
 	setPosition(pos);
 
+	// Sets extra collision boxes above and below the arrow box
 	topBig = getBox();
 	topBig.setCorner(df::Vector(getBox().getCorner().getX(), getBox().getCorner().getY() - 2));
 	topBig.setVertical(4);
@@ -47,6 +48,8 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			printf("%i EMPTY\n", dir);
 			return 0;
 		}
+
+		// If key press matches arrow
 		if ((dir == LEFT && key == df::Keyboard::LEFTARROW) ||
 			(dir == UP && key == df::Keyboard::UPARROW) ||
 			(dir == DOWN && key == df::Keyboard::DOWNARROW) ||
@@ -63,11 +66,15 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 				puts("DOWN");
 			}
 			std::string score = "MISS";
+
+			// Checks if arrow meets PERFECT or GOOD criteria
 			/*if (df::boxIntersectsBox(arrow->getBox(), topSmall) && df::boxIntersectsBox(arrow->getBox(), bottomSmall)) {
 				score = "PERFECT";
 			} else if (df::boxIntersectsBox(arrow->getBox(), topBig) && df::boxIntersectsBox(arrow->getBox(), bottomBig)) {
 				score = "GOOD";
 			}*/
+
+			// Checks if arrow meets PERFECT or GOOD criteria and updates the combOmeter(TM)
 			if (floatComp(">=", arrow->getPosition().getY(), getPosition().getY()) && floatComp("<=", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical())) {
 				score = "PERFECT";
 				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
@@ -87,6 +94,7 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 	return 0;
 }
 
+// Uses tolerance comparison for =, >=, and <= for floats
 bool ArrowBox::floatComp(std::string comp, float f1, float f2) {
 	const float EPSILON = (float) 0.0001;
 	if (!comp.compare("=")) {
