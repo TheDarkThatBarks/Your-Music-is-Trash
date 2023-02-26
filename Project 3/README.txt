@@ -1,19 +1,24 @@
 Ellys Gorodisch (emgorodisch@wpi.edu)
 Mauricio Mergal (mjmergal@wpi.edu)
 
-Platform: Windows 10
+Platform: Windows 10 (Visual Studio Community 2022)
 
 Files:
 -Using the professors' version of Dragonfly
 -Additional Files:
 	-Program Files:
 		-Arrow.h, Arrow.cpp
+		-LeftArrow.h, LeftArrow.cpp
+		-RightArrow.h, RightArrow.cpp
+		-UpArrow.h, UpArrow.cpp
+		-DownArrow.h, DownArrow.cpp
 		-ArrowBox.h, ArrowBox.cpp
 		-ArrowSpawner.h, ArrowSpawner.cpp
+		-Combometer.h, Combometer.cpp
 		-Player.h, Player.cpp
 		-Boss.h, Boss.cpp
 	-Audio:
-		-Stage1-Song.txt (Stage1-Song.mp3 (8 Bit Surf) by David Renda)
+		-Stage1-Song.txt (Stage1-Song.mp3 (8 Bit Surf by David Renda))
 	-Graphics:
 		-arrow-box-sprite.txt
 		-arrow-sprite.txt
@@ -26,21 +31,14 @@ Files:
 
 Code Structure:
 	-Object
-		-Player
 		-Arrow
-		-Boss
-		-ArrowBox
-		-ArrowSpawner
-	-Event
-		-Arrow
-			-RightArrow
 			-LeftArrow
+			-RightArrow
 			-UpArrow
 			-DownArrow
-			-Arrow
-				-ArrowBox
-					-ArrowSpawner
-
-How to Compile:
-
-Additional Notes:
+		-ArrowBox
+		-ArrowSpawner
+		-ViewObject
+			- Combomemeter
+		-Player
+		-Boss
