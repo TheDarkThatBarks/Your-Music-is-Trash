@@ -146,6 +146,7 @@
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="ArrowBox.cpp" />
     <ClCompile Include="ArrowSpawner.cpp" />
+    <ClCompile Include="Combometer.cpp" />
     <ClCompile Include="DownArrow.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="LeftArrow.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="ArrowBox.h" />
     <ClInclude Include="ArrowSpawner.h" />
+    <ClInclude Include="Combometer.h" />
     <ClInclude Include="DownArrow.h" />
     <ClInclude Include="LeftArrow.h" />
     <ClInclude Include="RightArrow.h" />

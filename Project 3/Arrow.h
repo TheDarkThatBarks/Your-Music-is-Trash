@@ -18,5 +18,4 @@ class Arrow : public df::Object {
 	Arrow();
 	Direction getDir() const;
 	void setDir(Direction d);
-	int eventHandler(const df::Event* p_e) override;
 };

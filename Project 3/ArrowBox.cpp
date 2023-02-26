@@ -3,6 +3,8 @@
 #include "EventKeyboard.h"
 #include "LogManager.h"
 #include "WorldManager.h"
+#include "Combometer.h"
+#include "EventView.h"
 
 ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setType("ArrowBox");
@@ -65,7 +67,7 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			return -1;
 		if (arrowQueue.empty()) {
 			printf("%i EMPTY\n", dir);
-			return -1;
+			return 0;
 		}
 		if ((dir == LEFT && key == df::Keyboard::LEFTARROW) ||
 			(dir == UP && key == df::Keyboard::UPARROW) ||
@@ -98,19 +100,23 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			//printf("%f %f\n\n", arrow->getPosition().getY(), arrow->getPosition().getY() + arrow->getBox().getVertical());
 			if (floatComp(">=", arrow->getPosition().getY(), getPosition().getY()) && floatComp("<=", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical())) {
 				score = "PERFECT";
+				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
 				//printf("%f %f\n", arrow->getPosition().getY(), getPosition().getY() + 1);
 				//printf("%f %f\n", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical());
 			} else if (floatComp(">=", arrow->getPosition().getY(), getPosition().getY() - 1) && floatComp("<=", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical() + 1)) {
 				score = "GOOD";
+				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
+			} else {
+				WM.onEvent(new df::EventView(COMBO_STRING, 0, false));
 			}
 			WM.removeObject(arrow);
 			printf("%f %f\n", getPosition().getY(), getPosition().getY() + getBox().getVertical());
 			printf("%f %f\n", arrow->getPosition().getY(), arrow->getPosition().getY() + arrow->getBox().getVertical());
 			printf("%s\n\n", score.c_str());
-			return 0;
+			return 1;
 		}
 	}
-	return -1;
+	return 0;
 }
 
 bool ArrowBox::floatComp(std::string comp, float f1, float f2) {

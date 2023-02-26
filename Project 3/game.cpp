@@ -4,6 +4,7 @@
 #include "ArrowBox.h"
 #include "Arrow.h"
 #include "ArrowSpawner.h"
+#include "Combometer.h"
 
 int main(int argc, char* argv[]) {
 
@@ -30,6 +31,8 @@ int main(int argc, char* argv[]) {
     //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
     //arrow->setPosition(df::Vector(10, 0));
     new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
+
+    new Combometer();
 
     RM.loadMusic("Stage1-song.wav", "stage1");
     RM.getMusic("stage1")->play();
