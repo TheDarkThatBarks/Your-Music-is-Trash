@@ -23,10 +23,14 @@ int main(int argc, char* argv[]) {
     ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
     ArrowBox* right = new ArrowBox(df::Vector(40, 10), RIGHT);
 
+    //loadSprites
     RM.loadSprite("sprites/left-arrow-sprite.txt", "left-arrow");
     RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
     RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
+    RM.loadSprite("sprites/player-sprite.txt", "player");
+    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
+
     //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
     //arrow->setPosition(df::Vector(10, 0));
     new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
