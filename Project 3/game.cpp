@@ -28,6 +28,10 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
     RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
+    RM.loadSprite("sprites/player-sprite.txt", "player");
+    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
+
+
     //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
     //arrow->setPosition(df::Vector(10, 0));
     new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
