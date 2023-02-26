@@ -18,30 +18,36 @@ int main(int argc, char* argv[]) {
     }
 
     // Show splash screen.
-    //df::splash();
+    df::splash();
 
+    // Creates ArrowBoxes
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
     ArrowBox* up = new ArrowBox(df::Vector(20, 10), UP);
     ArrowBox* down = new ArrowBox(df::Vector(30, 10), DOWN);
     ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
     ArrowBox* right = new ArrowBox(df::Vector(40, 10), RIGHT);
 
+    // Loads Arrow sprites
     RM.loadSprite("sprites/left-arrow-sprite.txt", "left-arrow");
     RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
     RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
+
+    // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
     RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
 
+    // Creates Player and Boss
     new Player();
     new Boss();
 
-    //Arrow* arrow = new Arrow(df::Vector(10, 0), DOWN);
-    //arrow->setPosition(df::Vector(10, 0));
+    // Creates ArrowSpawner
     new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
 
+    // Creates combOmeter(TM)
     new Combometer();
 
+    // Plays music
     RM.loadMusic("Stage1-song.wav", "stage1");
     RM.getMusic("stage1")->play();
 

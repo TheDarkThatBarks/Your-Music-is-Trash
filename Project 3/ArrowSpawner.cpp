@@ -13,6 +13,8 @@ ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, s
 	left = l;
 	right = r;
 	beatsPerSecond = 0;
+	
+	// Reads song beats file
 	std::ifstream song(songFile);
 	if (song.is_open()) {
 		std::string line;
@@ -21,6 +23,8 @@ ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, s
 		beatsPerSecond = bpm / 60;
 		while (song) {
 			getline(song, line);
+
+			// Adds only one of each arrow to each beat
 			std::vector<Direction> arrowsOnBeat;
 			bool w = false;
 			bool s = false;
@@ -45,6 +49,8 @@ ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, s
 			arrows.push(arrowsOnBeat);
 		}
 	}
+
+	// Prints arrows on each beat to terminal
 	std::queue<std::vector<Direction>> q = arrows;
 	while (!q.empty()) {
 		std::vector<Direction> list = q.front();
@@ -78,6 +84,8 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 				return -1;
 			std::vector<Direction> arrowList = arrows.front();
 			arrows.pop();
+
+			// Sends out the arrows for each beat to the respective boxes
 			for (int i = 0; i < arrowList.size(); i++) {
 				switch (arrowList.at(i)) {
 					case LEFT:
