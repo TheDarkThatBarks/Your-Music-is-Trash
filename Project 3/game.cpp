@@ -42,13 +42,13 @@ int main(int argc, char* argv[]) {
     new Boss();
 
     // Creates ArrowSpawner
-    new ArrowSpawner(up, down, left, right, "Stage1-Song.txt");
+    new ArrowSpawner(up, down, left, right, "music/Stage1-Song.txt");
 
     // Creates combOmeter(TM)
     new Combometer();
 
     // Plays music
-    RM.loadMusic("Stage1-song.wav", "stage1");
+    RM.loadMusic("music/Stage1-song.wav", "stage1");
     RM.getMusic("stage1")->play();
 
     GM.run();
