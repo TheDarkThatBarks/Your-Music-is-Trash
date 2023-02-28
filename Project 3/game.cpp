@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
     // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
-    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
+    RM.loadSprite("sprites/boss3-sprite.txt", "boss1");
 
     // Creates Player and Boss
     new Player();
