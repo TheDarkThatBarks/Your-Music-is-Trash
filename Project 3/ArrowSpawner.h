@@ -15,7 +15,7 @@ class ArrowSpawner : public df::Object {
 	ArrowBox* down;
 	ArrowBox* left;
 	ArrowBox* right;
-	static int beatsPerSecond;
+	static float beatsPerSecond;
 	std::queue<std::vector<Direction>> arrows;
 	static Combometer* combo;
 	static CombometerMax* comboMax;
@@ -23,7 +23,7 @@ class ArrowSpawner : public df::Object {
 
 	public:
 	ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile);
-	static int getBeatsPerSecond();
+	static float getBeatsPerSecond();
 	static Combometer* getCombo();
 	static void setCombo(Combometer* newCombo);
 	static CombometerMax* getComboMax();

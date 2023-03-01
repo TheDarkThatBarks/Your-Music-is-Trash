@@ -60,8 +60,8 @@ void GameStart::start(int level) {
 	// Creates ArrowSpawner
 	new ArrowSpawner(left, up, down, right, "music/Stage" + std::to_string(level) + "-Song.txt");
 
-	new Player((int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-	Boss* boss = new Boss("boss" + std::to_string(level), (int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
+	new Player((int) round((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
+	Boss* boss = new Boss("boss" + std::to_string(level), (int) round((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
 	boss->setPosition(df::Vector((float)(60 + (level == 3 ? 10 : 0)), 15));
 
 	ArrowSpawner::setCombo(new Combometer());

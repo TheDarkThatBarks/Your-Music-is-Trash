@@ -1,4 +1,5 @@
 #include <fstream>
+#define NOMINMAX
 #include <Windows.h>
 #include "ArrowSpawner.h"
 #include "EventStep.h"
@@ -9,7 +10,7 @@
 #include "GameManager.h"
 #include "EventKeyboard.h"
 
-int ArrowSpawner::beatsPerSecond;
+float ArrowSpawner::beatsPerSecond;
 Combometer* ArrowSpawner::combo;
 CombometerMax* ArrowSpawner::comboMax;
 GameStart* ArrowSpawner::gameStart;
@@ -28,7 +29,7 @@ ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, s
 		std::string line;
 		getline(song, line);
 		int bpm = stoi(line);
-		beatsPerSecond = bpm / 60;
+		beatsPerSecond = (float)(bpm / 60.0);
 		while (song) {
 			getline(song, line);
 
@@ -85,7 +86,7 @@ ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, s
 	registerInterest(df::KEYBOARD_EVENT);
 }
 
-int ArrowSpawner::getBeatsPerSecond() {
+float ArrowSpawner::getBeatsPerSecond() {
 	return beatsPerSecond;
 }
 
@@ -112,7 +113,7 @@ void ArrowSpawner::setGameStart(GameStart* newGameStart) {
 int ArrowSpawner::eventHandler(const df::Event* p_e) {
 	if (p_e->getType() == df::STEP_EVENT) {
 		const df::EventStep* p_s_e = dynamic_cast <const df::EventStep*> (p_e);
-		if (p_s_e->getStepCount() % ((int)(1000.0 / GM.getFrameTime()) / beatsPerSecond) == 0) {
+		if (p_s_e->getStepCount() % (int) round((1000.0 / GM.getFrameTime()) / beatsPerSecond) == 0) {
 			if (arrows.empty()) {
 				Sleep(2000);
 				gameStart->stop();
