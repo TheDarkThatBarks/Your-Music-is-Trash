@@ -1,7 +1,8 @@
 #include "LeftArrow.h"
 
-LeftArrow::LeftArrow() {
+LeftArrow::LeftArrow(ArrowBox* b) {
 	setSprite("left-arrow");
-	setDir(LEFT);
+	//dir = LEFT;
+	box = b;
 	setPosition(df::Vector(10, 0));
 }

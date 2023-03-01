@@ -1,7 +1,8 @@
 #include "DownArrow.h"
 
-DownArrow::DownArrow() {
+DownArrow::DownArrow(ArrowBox* b) {
 	setSprite("down-arrow");
-	setDir(DOWN);
+	//dir = DOWN;
+	box = b;
 	setPosition(df::Vector(30, 0));
 }

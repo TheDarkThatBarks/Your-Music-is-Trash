@@ -89,16 +89,16 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 			for (int i = 0; i < arrowList.size(); i++) {
 				switch (arrowList.at(i)) {
 					case LEFT:
-						left->addArrow(new LeftArrow());
+						left->addArrow(new LeftArrow(left));
 						break;
 					case UP:
-						up->addArrow(new UpArrow());
+						up->addArrow(new UpArrow(up));
 						break;
 					case DOWN:
-						down->addArrow(new DownArrow());
+						down->addArrow(new DownArrow(down));
 						break;
 					case RIGHT:
-						right->addArrow(new RightArrow());
+						right->addArrow(new RightArrow(right));
 						break;
 				}
 			}
