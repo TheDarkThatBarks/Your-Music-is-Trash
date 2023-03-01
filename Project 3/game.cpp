@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     // Creates Player and Boss
     new Player((int)(1000.0 / GM.getFrameTime()) / arrowSpawner->getBeatsPerSecond());
-    new Boss("boss2");
+    new Boss("boss1");
 
     // Creates combOmeter(TM)
     new Combometer();
