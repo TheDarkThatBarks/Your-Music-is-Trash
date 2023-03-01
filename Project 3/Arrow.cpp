@@ -7,13 +7,8 @@
 
 Arrow::Arrow() {
 	setType("Arrow");
-	//dir = UP;
-	//box = new ArrowBox();
 	box = NULL;
-	//float speed = (float)(0.1 * ((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
 	float speed = (float)(0.125 * ArrowSpawner::getBeatsPerSecond());
-	//printf("%f %f %i\n", speed, (float)(1000.0 / GM.getFrameTime()), ArrowSpawner::getBeatsPerSecond());
-	//printf("%f %i\n", speed, ArrowSpawner::getBeatsPerSecond());
 	setVelocity(df::Vector(0, speed));
 	registerInterest(df::STEP_EVENT);
 }
