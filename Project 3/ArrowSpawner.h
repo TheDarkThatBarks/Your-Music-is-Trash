@@ -12,11 +12,11 @@ class ArrowSpawner : public df::Object {
 	ArrowBox* down;
 	ArrowBox* left;
 	ArrowBox* right;
-	int beatsPerSecond;
+	static int beatsPerSecond;
 	std::queue<std::vector<Direction>> arrows;
 
 	public:
 	ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile);
-	int getBeatsPerSecond() const;
+	static int getBeatsPerSecond();
 	int eventHandler(const df::Event* p_e) override;
 };

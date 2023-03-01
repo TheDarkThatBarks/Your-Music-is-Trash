@@ -7,6 +7,8 @@
 #include "DownArrow.h"
 #include "GameManager.h"
 
+int ArrowSpawner::beatsPerSecond;
+
 ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile) {
 	setType("ArrowSpawner");
 	left = l;
@@ -77,7 +79,7 @@ ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, s
 	registerInterest(df::STEP_EVENT);
 }
 
-int ArrowSpawner::getBeatsPerSecond() const {
+int ArrowSpawner::getBeatsPerSecond() {
 	return beatsPerSecond;
 }
 

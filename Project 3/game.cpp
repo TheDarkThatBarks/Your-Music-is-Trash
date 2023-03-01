@@ -35,7 +35,8 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
 
     // Creates ArrowSpawner
-    ArrowSpawner* arrowSpawner = new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
+    new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
+    //new ArrowSpawner(left, up, down, right, "music/test3.txt");
 
     // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
@@ -44,8 +45,8 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/boss3-sprite.txt", "boss3");
 
     // Creates Player and Boss
-    new Player((int)(1000.0 / GM.getFrameTime()) / arrowSpawner->getBeatsPerSecond());
-    new Boss("boss1", (int) (1000.0 / GM.getFrameTime()) / arrowSpawner->getBeatsPerSecond());
+    new Player((int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
+    new Boss("boss2", (int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
 
     // Creates combOmeter(TM)
     new Combometer();
