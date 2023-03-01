@@ -1,7 +1,8 @@
 #include "RightArrow.h"
 
-RightArrow::RightArrow() {
+RightArrow::RightArrow(ArrowBox* b) {
 	setSprite("right-arrow");
-	setDir(RIGHT);
+	//dir = RIGHT;
+	box = b;
 	setPosition(df::Vector(40, 0));
 }

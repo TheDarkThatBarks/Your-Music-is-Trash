@@ -156,7 +156,6 @@
     <ClCompile Include="UpArrow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arrow.h" />
     <ClInclude Include="ArrowBox.h" />
     <ClInclude Include="ArrowSpawner.h" />
     <ClInclude Include="Boss.h" />

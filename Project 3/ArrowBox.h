@@ -3,7 +3,15 @@
 #include <queue>
 #include "Object.h"
 #include "Event.h"
-#include "Arrow.h"
+
+class Arrow;
+
+enum Direction {
+	LEFT,
+	UP,
+	DOWN,
+	RIGHT
+};
 
 class ArrowBox : public df::Object {
 	private:
@@ -13,11 +21,20 @@ class ArrowBox : public df::Object {
 	df::Box bottomBig;
 	df::Box bottomSmall;
 	std::queue<Arrow*> arrowQueue;
-	bool floatComp(std::string comp, float f1, float f2);
 
 	public:
 	ArrowBox() {};
 	ArrowBox(df::Vector pos, Direction d);
 	void addArrow(Arrow* arrow);
+	Arrow* popArrow();
+	int eventHandler(const df::Event* p_e) override;
+};
+
+class Arrow : public df::Object {
+	protected:
+	ArrowBox* box;
+
+	public:
+	Arrow();
 	int eventHandler(const df::Event* p_e) override;
 };

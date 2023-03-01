@@ -1,7 +1,8 @@
 #include "UpArrow.h"
 
-UpArrow::UpArrow() {
+UpArrow::UpArrow(ArrowBox* b) {
 	setSprite("up-arrow");
-	setDir(UP);
+	//dir = UP;
+	box = b;
 	setPosition(df::Vector(20, 0));
 }
