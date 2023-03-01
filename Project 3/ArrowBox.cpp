@@ -7,6 +7,7 @@
 #include "CombometerMax.h"
 #include "EventView.h"
 #include "ArrowSpawner.h"
+#include "DisplayManager.h"
 
 ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setType("ArrowBox");
@@ -86,6 +87,8 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			if (df::boxIntersectsBox(arrowBox, topSmall) && df::boxIntersectsBox(arrowBox, bottomSmall)) {
 				score = "PERFECT";
 				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
+				DM.shake(1, 1, 10, false);
+				//DM.
 			} else if (df::boxIntersectsBox(arrowBox, topBig) && df::boxIntersectsBox(arrowBox, bottomBig)) {
 				score = "GOOD";
 				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
