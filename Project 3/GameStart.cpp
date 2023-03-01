@@ -60,6 +60,9 @@ void GameStart::start(int level) {
 	Boss* boss = new Boss("boss2", (int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
 	boss->setPosition(df::Vector(60 + (level == 3 ? 10 : 0), 15));
 
+	ArrowSpawner::setCombo(new Combometer());
+	ArrowSpawner::setComboMax(new CombometerMax());
+
 	setActive(false);
 	//p_music->pause();
 	//printf("%s\n", "stage" + std::to_string(level));

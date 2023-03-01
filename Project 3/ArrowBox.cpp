@@ -88,16 +88,14 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 				score = "PERFECT";
 				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
 				DM.shake(1, 1, 10, false);
-				//DM.
 			} else if (df::boxIntersectsBox(arrowBox, topBig) && df::boxIntersectsBox(arrowBox, bottomBig)) {
 				score = "GOOD";
 				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
 			} else {
 				WM.onEvent(new df::EventView(COMBO_STRING, 0, false));
 			}
-			if (ArrowSpawner::getCombo()->getValue() > ArrowSpawner::getComboMax()->getValue()) {
+			if (ArrowSpawner::getCombo()->getValue() > ArrowSpawner::getComboMax()->getValue())
 				WM.onEvent(new df::EventView(MAX_COMBO_STRING, ArrowSpawner::getCombo()->getValue(), false));
-			}
 			WM.markForDelete(arrow);
 			printf("%f %f\n", getPosition().getY(), getPosition().getY() + getBox().getVertical());
 			printf("%f %f\n", arrow->getPosition().getY(), arrow->getPosition().getY() + arrow->getBox().getVertical());

@@ -65,8 +65,6 @@ int main(int argc, char* argv[]) {
     LM.setFlush(false);
     new GameStart();
 
-    printf("DEBUG\n");
-
     GM.run();
 
     // Shut everything down.
