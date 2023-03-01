@@ -5,5 +5,5 @@
 
 class Boss : public df::Object {
 	public:
-	Boss(std::string boss);
+	Boss(std::string boss, int newSlowdown);
 };
