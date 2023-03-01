@@ -7,6 +7,7 @@
 #include "ArrowBox.h"
 #include "Combometer.h"
 #include "CombometerMax.h"
+#include "GameStart.h"
 
 class ArrowSpawner : public df::Object {
 	private:
@@ -18,6 +19,7 @@ class ArrowSpawner : public df::Object {
 	std::queue<std::vector<Direction>> arrows;
 	static Combometer* combo;
 	static CombometerMax* comboMax;
+	static GameStart* gameStart;
 
 	public:
 	ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile);
@@ -26,5 +28,6 @@ class ArrowSpawner : public df::Object {
 	static void setCombo(Combometer* newCombo);
 	static CombometerMax* getComboMax();
 	static void setComboMax(CombometerMax* newCombo);
+	static void setGameStart(GameStart* newGameStart);
 	int eventHandler(const df::Event* p_e) override;
 };

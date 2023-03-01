@@ -26,8 +26,10 @@ GameStart::GameStart() {
 
 int GameStart::eventHandler(const df::Event* p_e) {
 	if (p_e->getType() == df::KEYBOARD_EVENT) {
-		const df::EventKeyboard* p_keyboard_event = dynamic_cast <const df::EventKeyboard*> (p_e);
-		switch (p_keyboard_event->getKey()) {
+		const df::EventKeyboard* p_k_e = dynamic_cast <const df::EventKeyboard*> (p_e);
+		if (p_k_e->getKeyboardAction() != df::KEY_PRESSED)
+			return 0;
+		switch (p_k_e->getKey()) {
 			case df::Keyboard::NUM1:
 				start(1);
 				break;
@@ -40,6 +42,8 @@ int GameStart::eventHandler(const df::Event* p_e) {
 			case df::Keyboard::ESCAPE:
 				GM.setGameOver();
 				break;
+			default:
+				return 0;
 		}
 		return 1;
 	}
@@ -58,35 +62,24 @@ void GameStart::start(int level) {
 
 	new Player((int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
 	Boss* boss = new Boss("boss2", (int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-	boss->setPosition(df::Vector(60 + (level == 3 ? 10 : 0), 15));
+	boss->setPosition(df::Vector((float)(60 + (level == 3 ? 10 : 0)), 15));
 
 	ArrowSpawner::setCombo(new Combometer());
 	ArrowSpawner::setComboMax(new CombometerMax());
+	ArrowSpawner::setGameStart(this);
 
 	setActive(false);
 	//p_music->pause();
-	//printf("%s\n", "stage" + std::to_string(level));
-	std::string str = std::to_string(level);
-	printf("%s\n", std::to_string(level).c_str());
 	RM.getMusic("stage" + std::to_string(level))->play();
 }
 
 void GameStart::stop() {
-	df::ObjectList object_list = WM.getAllObjects(true);
-	df::ObjectListIterator i(&object_list);
-	int points = 0;
-	for (i.first(); !i.isDone(); i.next()) {
-		df::Object* p_o = i.currentObject();
-		if (p_o->getType() == "Saucer" || p_o->getType() == "ViewObject") {
-			//if (p_o->getType() == "ViewObject" && (dynamic_cast <ViewObject*> (p_o))->getViewString() == POINTS_STRING)
-			//	points = (dynamic_cast <ViewObject*> (p_o))->getValue();
-			//WM.markForDelete(p_o);
-		}
-		if (p_o->getType() == "GameStart") {
-			p_o->setActive(true);
-			(dynamic_cast <GameStart*> (p_o))->playMusic();
-		}
-	}
+	df::ObjectList list = WM.getAllObjects(false);
+	df::ObjectListIterator li(&list);
+	for (li.first(); !li.isDone(); li.next())
+		WM.markForDelete(li.currentObject());
+	setActive(true);
+	playMusic();
 	/*std::ifstream input;
 	input.open("highscore.txt");
 	int highScore = 0;

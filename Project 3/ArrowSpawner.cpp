@@ -6,10 +6,12 @@
 #include "UpArrow.h"
 #include "DownArrow.h"
 #include "GameManager.h"
+#include "EventKeyboard.h"
 
 int ArrowSpawner::beatsPerSecond;
 Combometer* ArrowSpawner::combo;
 CombometerMax* ArrowSpawner::comboMax;
+GameStart* ArrowSpawner::gameStart;
 
 ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile) {
 	setType("ArrowSpawner");
@@ -79,10 +81,31 @@ ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, s
 		q.pop();
 	}
 	registerInterest(df::STEP_EVENT);
+	registerInterest(df::KEYBOARD_EVENT);
 }
 
 int ArrowSpawner::getBeatsPerSecond() {
 	return beatsPerSecond;
+}
+
+Combometer* ArrowSpawner::getCombo() {
+	return combo;
+}
+
+void ArrowSpawner::setCombo(Combometer* newCombo) {
+	combo = newCombo;
+}
+
+CombometerMax* ArrowSpawner::getComboMax() {
+	return comboMax;
+}
+
+void ArrowSpawner::setComboMax(CombometerMax* newCombo) {
+	comboMax = newCombo;
+}
+
+void ArrowSpawner::setGameStart(GameStart* newGameStart) {
+	gameStart = newGameStart;
 }
 
 int ArrowSpawner::eventHandler(const df::Event* p_e) {
@@ -113,23 +136,14 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 			}
 			return 1;
 		}
+	} else if (p_e->getType() == df::KEYBOARD_EVENT) {
+		const df::EventKeyboard* p_k_e = dynamic_cast <const df::EventKeyboard*> (p_e);
+		if (p_k_e->getKeyboardAction() != df::KEY_PRESSED)
+			return 0;
+		if (p_k_e->getKey() == df::Keyboard::ESCAPE) {
+			gameStart->stop();
+			return 1;
+		}
 	}
 	return 0;
-}
-
-
-Combometer* ArrowSpawner::getCombo() {
-	return combo;
-}
-
-void ArrowSpawner::setCombo(Combometer* newCombo) {
-	combo = newCombo;
-}
-
-CombometerMax* ArrowSpawner::getComboMax() {
-	return comboMax;
-}
-
-void ArrowSpawner::setComboMax(CombometerMax* newCombo) {
-	comboMax = newCombo;
 }
