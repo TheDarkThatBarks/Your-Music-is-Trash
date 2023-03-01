@@ -7,6 +7,9 @@
 #include "Combometer.h"
 #include "Player.h"
 #include "Boss.h"
+#include "GameStart.h"
+
+void loadResources();
 
 int main(int argc, char* argv[]) {
 
@@ -18,10 +21,10 @@ int main(int argc, char* argv[]) {
     }
 
     // Show splash screen.
-    //df::splash();
+    df::splash();
 
 
-    // Creates ArrowBoxes
+    /*// Creates ArrowBoxes
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
     ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
     ArrowBox* up = new ArrowBox(df::Vector(20, 10), UP);
@@ -53,10 +56,31 @@ int main(int argc, char* argv[]) {
 
     // Plays music
     RM.loadMusic("music/Stage1-song.wav", "stage1");
-    RM.getMusic("stage1")->play();
+    RM.getMusic("stage1")->play();*/
+    loadResources();
+
+    LM.setFlush(false);
+    new GameStart();
+
+    printf("DEBUG\n");
 
     GM.run();
 
     // Shut everything down.
     GM.shutDown();
+}
+
+void loadResources() {
+    RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
+    RM.loadSprite("sprites/left-arrow-sprite.txt", "left-arrow");
+    RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
+    RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
+    RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
+    RM.loadSprite("sprites/player-sprite.txt", "player");
+    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
+    RM.loadSprite("sprites/boss2-sprite.txt", "boss2");
+    RM.loadSprite("sprites/boss3-sprite.txt", "boss3");
+    RM.loadSprite("sprites/game-start-sprite.txt", "game-start");
+
+    RM.loadMusic("music/Stage1-song.wav", "stage1");
 }
