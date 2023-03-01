@@ -13,7 +13,7 @@ GameStart::GameStart() {
 	setType("GameStart");
 	setLocation(df::CENTER_CENTER);
 	setSprite("game-start");
-	p_music = RM.getMusic("start-music");
+	music = RM.getMusic("start-music");
 	registerInterest(df::KEYBOARD_EVENT);
 	playMusic();
 	//std::ifstream input;
@@ -61,7 +61,7 @@ void GameStart::start(int level) {
 	new ArrowSpawner(left, up, down, right, "music/Stage" + std::to_string(level) + "-Song.txt");
 
 	new Player((int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-	Boss* boss = new Boss("boss2", (int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
+	Boss* boss = new Boss("boss" + std::to_string(level), (int) (1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
 	boss->setPosition(df::Vector((float)(60 + (level == 3 ? 10 : 0)), 15));
 
 	ArrowSpawner::setCombo(new Combometer());
@@ -69,8 +69,9 @@ void GameStart::start(int level) {
 	ArrowSpawner::setGameStart(this);
 
 	setActive(false);
-	//p_music->pause();
-	RM.getMusic("stage" + std::to_string(level))->play();
+	music->pause();
+	levelMusic = RM.getMusic("stage" + std::to_string(level));
+	levelMusic->play();
 }
 
 void GameStart::stop() {
@@ -78,6 +79,7 @@ void GameStart::stop() {
 	df::ObjectListIterator li(&list);
 	for (li.first(); !li.isDone(); li.next())
 		WM.markForDelete(li.currentObject());
+	levelMusic->stop();
 	setActive(true);
 	playMusic();
 	/*std::ifstream input;
@@ -100,6 +102,6 @@ int GameStart::draw() {
 }
 
 void GameStart::playMusic() {
-	if (p_music)
-		p_music->play();
+	if (music)
+		music->play();
 }

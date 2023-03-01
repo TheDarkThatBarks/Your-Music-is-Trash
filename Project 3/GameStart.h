@@ -5,7 +5,8 @@
 
 class GameStart : public df::ViewObject {
 	private:
-	df::Music* p_music;
+	df::Music* music;
+	df::Music* levelMusic;
 	void start(int level);
 	int draw() override;
 

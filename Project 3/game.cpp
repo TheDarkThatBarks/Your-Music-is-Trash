@@ -86,4 +86,5 @@ void loadResources() {
     RM.loadMusic("music/Stage1-song.wav", "stage1");
     RM.loadMusic("music/Stage2-song.wav", "stage2");
     RM.loadMusic("music/Stage3-song.wav", "stage3");
+    RM.loadMusic("music/TitleScreen-music.wav", "start-music");
 }

@@ -17,9 +17,9 @@ slowdown 15
         _/ /(__  )    / / / /  / /_/ (__  ) / / /           
        /___/____/    /_/ /_/   \__,_/____/_/ /_/            
                                                             
-Controls: 'w'/'s' moves, Mouse fires, Space nukes, 'q' quits
+Controls: Arrow keys to hit the right arrows, 'ESCAPE' quits
                                                             
-            Press 'p' to play, 'q' to quit                  
+      Press '1', '2', or '3' to play, 'ESCAPE' to quit      
 end
      __  __                    __  ___           _          
      \ \/ /___  __  _______   /  |/  /_  _______(_)____     
@@ -32,7 +32,7 @@ end
         _/ /(__  )    / / / /  / /_/ (__  ) / / /           
        /___/____/    /_/ /_/   \__,_/____/_/ /_/            
                                                             
-Controls: 'w'/'s' moves, Mouse fires, Space nukes, 'q' quits
+Controls: Arrow keys to hit the right arrows, 'ESCAPE' quits
                                                             
                                                             
 end

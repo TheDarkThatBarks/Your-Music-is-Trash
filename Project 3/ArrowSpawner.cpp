@@ -1,4 +1,5 @@
 #include <fstream>
+#include <Windows.h>
 #include "ArrowSpawner.h"
 #include "EventStep.h"
 #include "LeftArrow.h"
@@ -112,8 +113,11 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 	if (p_e->getType() == df::STEP_EVENT) {
 		const df::EventStep* p_s_e = dynamic_cast <const df::EventStep*> (p_e);
 		if (p_s_e->getStepCount() % ((int)(1000.0 / GM.getFrameTime()) / beatsPerSecond) == 0) {
-			if (arrows.empty())
-				return -1;
+			if (arrows.empty()) {
+				Sleep(2000);
+				gameStart->stop();
+				return 1;
+			}
 			std::vector<Direction> arrowList = arrows.front();
 			arrows.pop();
 
