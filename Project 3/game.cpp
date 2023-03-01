@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) {
     // Show splash screen.
     df::splash();
 
+
     // Creates ArrowBoxes
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
     ArrowBox* up = new ArrowBox(df::Vector(20, 10), UP);
@@ -36,7 +37,7 @@ int main(int argc, char* argv[]) {
     // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
     RM.loadSprite("sprites/boss3-sprite.txt", "boss1");
-
+    
     // Creates Player and Boss
     new Player();
     new Boss();

@@ -81,4 +81,39 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="sprites\arrow-box-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\boss1-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\boss2-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\boss3-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\brick-box-background.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\brick-box-background-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\down-arrow-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\left-arrow-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\player-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\right-arrow-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="sprites\up-arrow-sprite.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

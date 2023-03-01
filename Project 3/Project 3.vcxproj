@@ -167,6 +167,19 @@
     <ClInclude Include="RightArrow.h" />
     <ClInclude Include="UpArrow.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="sprites\arrow-box-sprite.txt" />
+    <Text Include="sprites\boss1-sprite.txt" />
+    <Text Include="sprites\boss2-sprite.txt" />
+    <Text Include="sprites\boss3-sprite.txt" />
+    <Text Include="sprites\brick-box-background-sprite.txt" />
+    <Text Include="sprites\brick-box-background.txt" />
+    <Text Include="sprites\down-arrow-sprite.txt" />
+    <Text Include="sprites\left-arrow-sprite.txt" />
+    <Text Include="sprites\player-sprite.txt" />
+    <Text Include="sprites\right-arrow-sprite.txt" />
+    <Text Include="sprites\up-arrow-sprite.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
