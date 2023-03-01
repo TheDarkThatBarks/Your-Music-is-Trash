@@ -115,7 +115,7 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 		const df::EventStep* p_s_e = dynamic_cast <const df::EventStep*> (p_e);
 		if (p_s_e->getStepCount() % (int) round((1000.0 / GM.getFrameTime()) / beatsPerSecond) == 0) {
 			if (arrows.empty()) {
-				Sleep(2000);
+				Sleep(6000);
 				gameStart->stop();
 				return 1;
 			}
