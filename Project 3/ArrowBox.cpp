@@ -8,6 +8,7 @@
 #include "EventView.h"
 #include "ArrowSpawner.h"
 #include "DisplayManager.h"
+#include "Particle.h"
 
 ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setType("ArrowBox");
@@ -91,6 +92,7 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			} else if (df::boxIntersectsBox(arrowBox, topBig) && df::boxIntersectsBox(arrowBox, bottomBig)) {
 				score = "GOOD";
 				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
+				//df::addParticles(df::SPARKS, getPosition(), 1.0f, df::RED);
 			} else {
 				WM.onEvent(new df::EventView(COMBO_STRING, 0, false));
 			}
