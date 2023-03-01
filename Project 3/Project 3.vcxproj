@@ -148,6 +148,7 @@
     <ClCompile Include="ArrowSpawner.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Combometer.cpp" />
+    <ClCompile Include="CombometerMax.cpp" />
     <ClCompile Include="DownArrow.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="LeftArrow.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="ArrowSpawner.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Combometer.h" />
+    <ClInclude Include="CombometerMax.h" />
     <ClInclude Include="DownArrow.h" />
     <ClInclude Include="LeftArrow.h" />
     <ClInclude Include="Player.h" />

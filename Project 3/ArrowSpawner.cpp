@@ -8,6 +8,8 @@
 #include "GameManager.h"
 
 int ArrowSpawner::beatsPerSecond;
+Combometer* ArrowSpawner::combo;
+CombometerMax *ArrowSpawner::comboMax;
 
 ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile) {
 	setType("ArrowSpawner");
@@ -113,4 +115,19 @@ int ArrowSpawner::eventHandler(const df::Event* p_e) {
 		}
 	}
 	return 0;
+}
+
+
+Combometer *ArrowSpawner::getCombo() {
+	return combo;
+}
+void ArrowSpawner::setCombo(Combometer* newCombo) {
+	combo = newCombo;
+}
+
+CombometerMax *ArrowSpawner::getComboMax() {
+	return comboMax;
+}
+void ArrowSpawner::setComboMax(CombometerMax *newCombo) {
+	comboMax = newCombo;
 }

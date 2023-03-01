@@ -5,6 +5,7 @@
 //#include "Arrow.h"
 #include "ArrowSpawner.h"
 #include "Combometer.h"
+#include "CombometerMax.h"
 #include "Player.h"
 #include "Boss.h"
 
@@ -18,7 +19,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Show splash screen.
-    //df::splash();
+    df::splash();
 
 
     // Creates ArrowBoxes
@@ -46,10 +47,12 @@ int main(int argc, char* argv[]) {
 
     // Creates Player and Boss
     new Player((int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-    new Boss("boss2", (int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
+    new Boss("boss1", (int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
 
-    // Creates combOmeter(TM)
-    new Combometer();
+    // Creates combOmeter(TM) and combOmeterMAX(TM)
+    ArrowSpawner::setCombo(new Combometer());
+    ArrowSpawner::setComboMax(new CombometerMax());
+    
 
     // Plays music
     RM.loadMusic("music/Stage1-song.wav", "stage1");
