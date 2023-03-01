@@ -2,13 +2,16 @@
 #include "EventStep.h"
 #include "LogManager.h"
 #include "WorldManager.h"
+#include "ArrowSpawner.h"
+#include "GameManager.h"
 
 Arrow::Arrow() {
 	setType("Arrow");
 	//dir = UP;
 	//box = new ArrowBox();
 	box = NULL;
-	setVelocity(df::Vector(0, 0.25));
+	float speed = (float)(0.1 * ((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
+	setVelocity(df::Vector(0, speed));
 	registerInterest(df::STEP_EVENT);
 }
 
