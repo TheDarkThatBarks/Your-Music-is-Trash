@@ -22,9 +22,9 @@ int main(int argc, char* argv[]) {
 
     // Creates ArrowBoxes
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
+    ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
     ArrowBox* up = new ArrowBox(df::Vector(20, 10), UP);
     ArrowBox* down = new ArrowBox(df::Vector(30, 10), DOWN);
-    ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
     ArrowBox* right = new ArrowBox(df::Vector(40, 10), RIGHT);
 
     // Loads Arrow sprites
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     new Boss();
 
     // Creates ArrowSpawner
-    new ArrowSpawner(up, down, left, right, "music/Stage1-Song.txt");
+    new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
 
     // Creates combOmeter(TM)
     new Combometer();
