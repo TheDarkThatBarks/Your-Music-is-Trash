@@ -5,12 +5,13 @@
 #include "RightArrow.h"
 #include "UpArrow.h"
 #include "DownArrow.h"
+#include "GameManager.h"
 
-ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, std::string songFile) {
+ArrowSpawner::ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile) {
 	setType("ArrowSpawner");
+	left = l;
 	up = u;
 	down = d;
-	left = l;
 	right = r;
 	beatsPerSecond = 0;
 	
@@ -76,10 +77,14 @@ ArrowSpawner::ArrowSpawner(ArrowBox* u, ArrowBox* d, ArrowBox* l, ArrowBox* r, s
 	registerInterest(df::STEP_EVENT);
 }
 
+int ArrowSpawner::getBeatsPerSecond() const {
+	return beatsPerSecond;
+}
+
 int ArrowSpawner::eventHandler(const df::Event* p_e) {
 	if (p_e->getType() == df::STEP_EVENT) {
 		const df::EventStep* p_s_e = dynamic_cast <const df::EventStep*> (p_e);
-		if (p_s_e->getStepCount() % (30 / beatsPerSecond) == 0) {
+		if (p_s_e->getStepCount() % ((int)(1000.0 / GM.getFrameTime()) / beatsPerSecond) == 0) {
 			if (arrows.empty())
 				return -1;
 			std::vector<Direction> arrowList = arrows.front();

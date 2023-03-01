@@ -17,5 +17,6 @@ class ArrowSpawner : public df::Object {
 
 	public:
 	ArrowSpawner(ArrowBox* l, ArrowBox* u, ArrowBox* d, ArrowBox* r, std::string songFile);
+	int getBeatsPerSecond() const;
 	int eventHandler(const df::Event* p_e) override;
 };

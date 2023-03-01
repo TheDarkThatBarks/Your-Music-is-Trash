@@ -1,7 +1,7 @@
 #include "Player.h"
 
-
-Player::Player() {
+Player::Player(int newSlowdown) {
 	setPosition(df::Vector(60,5));
-	printf("%i\n", setSprite("player"));
+	setSprite("player");
+	getAnimation().getSprite()->setSlowdown(newSlowdown);
 }

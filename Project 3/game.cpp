@@ -34,16 +34,21 @@ int main(int argc, char* argv[]) {
     RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
 
+    // Creates ArrowSpawner
+    ArrowSpawner* arrowSpawner = new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
+
     // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
+<<<<<<< Updated upstream
     RM.loadSprite("sprites/boss3-sprite.txt", "boss1");
     
-    // Creates Player and Boss
-    new Player();
-    new Boss();
+=======
+    RM.loadSprite("sprites/boss2-sprite.txt", "boss1");
 
-    // Creates ArrowSpawner
-    new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
+>>>>>>> Stashed changes
+    // Creates Player and Boss
+    new Player((int)(1000.0 / GM.getFrameTime()) / arrowSpawner->getBeatsPerSecond());
+    new Boss();
 
     // Creates combOmeter(TM)
     new Combometer();
