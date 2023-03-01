@@ -39,16 +39,13 @@ int main(int argc, char* argv[]) {
 
     // Loads Player and Boss Sprites
     RM.loadSprite("sprites/player-sprite.txt", "player");
-<<<<<<< Updated upstream
-    RM.loadSprite("sprites/boss3-sprite.txt", "boss1");
-    
-=======
-    RM.loadSprite("sprites/boss2-sprite.txt", "boss1");
+    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
+    RM.loadSprite("sprites/boss2-sprite.txt", "boss2");
+    RM.loadSprite("sprites/boss3-sprite.txt", "boss3");
 
->>>>>>> Stashed changes
     // Creates Player and Boss
     new Player((int)(1000.0 / GM.getFrameTime()) / arrowSpawner->getBeatsPerSecond());
-    new Boss();
+    new Boss("boss2");
 
     // Creates combOmeter(TM)
     new Combometer();
