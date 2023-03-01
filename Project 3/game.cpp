@@ -2,7 +2,7 @@
 #include "LogManager.h"
 #include "ResourceManager.h"
 #include "ArrowBox.h"
-#include "Arrow.h"
+//#include "Arrow.h"
 #include "ArrowSpawner.h"
 #include "Combometer.h"
 #include "Player.h"
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Show splash screen.
-    df::splash();
+    //df::splash();
 
     // Creates ArrowBoxes
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");

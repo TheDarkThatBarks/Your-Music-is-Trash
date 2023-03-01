@@ -12,20 +12,21 @@ ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setPosition(pos);
 
 	// Sets extra collision boxes above and below the arrow box
-	topBig = getBox();
-	topBig.setCorner(df::Vector(getBox().getCorner().getX(), getBox().getCorner().getY() - 2));
+	df::Box box = df::getWorldBox(this);
+	topBig = box;
+	topBig.setCorner(df::Vector(box.getCorner().getX(), box.getCorner().getY() - 2));
 	topBig.setVertical(4);
 
-	topSmall = getBox();
-	topSmall.setCorner(df::Vector(getBox().getCorner().getX(), getBox().getCorner().getY() - 1));
+	topSmall = box;
+	topSmall.setCorner(df::Vector(box.getCorner().getX(), box.getCorner().getY() - 1));
 	topSmall.setVertical(2);
 
-	bottomBig = getBox();
-	bottomBig.setCorner(df::Vector(getBox().getCorner().getX(), getBox().getCorner().getY() + getBox().getVertical() - 2));
+	bottomBig = box;
+	bottomBig.setCorner(df::Vector(box.getCorner().getX(), box.getCorner().getY() + box.getVertical() - 2));
 	bottomBig.setVertical(4);
 
-	bottomSmall = getBox();
-	bottomSmall.setCorner(df::Vector(getBox().getCorner().getX(), getBox().getCorner().getY() + getBox().getVertical() - 1));
+	bottomSmall = box;
+	bottomSmall.setCorner(df::Vector(box.getCorner().getX(), box.getCorner().getY() + box.getVertical() - 1));
 	bottomSmall.setVertical(2);
 
 	setAltitude(0);
@@ -36,6 +37,14 @@ ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 
 void ArrowBox::addArrow(Arrow* arrow) {
 	arrowQueue.push(arrow);
+}
+
+Arrow* ArrowBox::popArrow() {
+	if (arrowQueue.empty())
+		return NULL;
+	Arrow* arrow = arrowQueue.front();
+	arrowQueue.pop();
+	return arrow;
 }
 
 int ArrowBox::eventHandler(const df::Event* p_e) {
@@ -54,8 +63,7 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			(dir == UP && key == df::Keyboard::UPARROW) ||
 			(dir == DOWN && key == df::Keyboard::DOWNARROW) ||
 			(dir == RIGHT && key == df::Keyboard::RIGHTARROW)) {
-			Arrow* arrow = arrowQueue.front();
-			arrowQueue.pop();
+			Arrow* arrow = popArrow();
 			if (dir == LEFT) {
 				puts("LEFT");
 			} else if (dir == RIGHT) {
@@ -67,24 +75,22 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			}
 			std::string score = "MISS";
 
-			// Checks if arrow meets PERFECT or GOOD criteria
-			/*if (df::boxIntersectsBox(arrow->getBox(), topSmall) && df::boxIntersectsBox(arrow->getBox(), bottomSmall)) {
-				score = "PERFECT";
-			} else if (df::boxIntersectsBox(arrow->getBox(), topBig) && df::boxIntersectsBox(arrow->getBox(), bottomBig)) {
-				score = "GOOD";
-			}*/
-
 			// Checks if arrow meets PERFECT or GOOD criteria and updates the combOmeter(TM)
-			if (floatComp(">=", arrow->getPosition().getY(), getPosition().getY()) && floatComp("<=", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical())) {
+
+			df::Box arrowBox = df::getWorldBox(arrow);
+			printf("%f %f %f %f\n", arrowBox.getCorner().getX(), arrowBox.getCorner().getY(), arrowBox.getHorizontal(), arrowBox.getVertical());
+			printf("%f %f %f %f\n", topSmall.getCorner().getX(), topSmall.getCorner().getY(), topSmall.getHorizontal(), topSmall.getVertical());
+			printf("%f %f %f %f\n", topBig.getCorner().getX(), topBig.getCorner().getY(), topBig.getHorizontal(), topBig.getVertical());
+			if (df::boxIntersectsBox(arrowBox, topSmall) && df::boxIntersectsBox(arrowBox, bottomSmall)) {
 				score = "PERFECT";
 				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
-			} else if (floatComp(">=", arrow->getPosition().getY(), getPosition().getY() - 1) && floatComp("<=", arrow->getPosition().getY() + arrow->getBox().getVertical(), getPosition().getY() + getBox().getVertical() + 1)) {
+			} else if (df::boxIntersectsBox(arrowBox, topBig) && df::boxIntersectsBox(arrowBox, bottomBig)) {
 				score = "GOOD";
 				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
 			} else {
 				WM.onEvent(new df::EventView(COMBO_STRING, 0, false));
 			}
-			WM.removeObject(arrow);
+			WM.markForDelete(arrow);
 			printf("%f %f\n", getPosition().getY(), getPosition().getY() + getBox().getVertical());
 			printf("%f %f\n", arrow->getPosition().getY(), arrow->getPosition().getY() + arrow->getBox().getVertical());
 			printf("%s\n\n", score.c_str());
@@ -92,17 +98,4 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 		}
 	}
 	return 0;
-}
-
-// Uses tolerance comparison for =, >=, and <= for floats
-bool ArrowBox::floatComp(std::string comp, float f1, float f2) {
-	const float EPSILON = (float) 0.0001;
-	if (!comp.compare("=")) {
-		return abs(f1 - f2) <= EPSILON;
-	} else if (!comp.compare(">=")) {
-		return f1 > f2 || floatComp("=", f1, f2);
-	} else if (!comp.compare("<=")) {
-		return f1 < f2 || floatComp("=", f1, f2);
-	}
-	return false;
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Arrow.h"
+#include "ArrowBox.h"
 
 class RightArrow : public Arrow {
 	public:
-	RightArrow();
+	RightArrow(ArrowBox* b);
 };
