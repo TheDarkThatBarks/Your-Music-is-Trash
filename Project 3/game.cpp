@@ -51,6 +51,5 @@ void loadResources() {
 
     RM.loadSound("sounds/correct.wav", "correct");
     RM.loadSound("sounds/miss.wav", "miss");
-    RM.loadSound("sounds/select1.wav", "select1");
-    RM.loadSound("sounds/select2.wav", "select2");
+    RM.loadSound("sounds/select.wav", "select");
 }

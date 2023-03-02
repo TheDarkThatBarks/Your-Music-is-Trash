@@ -16,7 +16,7 @@ GameStart::GameStart() {
 	setLocation(df::CENTER_CENTER);
 	setSprite("game-start");
 	music = RM.getMusic("start-music");
-	sound = RM.getSound("select1");
+	sound = RM.getSound("select");
 	level = 0;
 	combo1 = 0;
 	combo2 = 0;

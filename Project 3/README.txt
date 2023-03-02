@@ -7,7 +7,7 @@ Files:
 -Using the professors' version of Dragonfly
 -Additional Files:
 	-Program Files:
-		-Arrow.h, Arrow.cpp
+		-Arrow.cpp
 		-LeftArrow.h, LeftArrow.cpp
 		-RightArrow.h, RightArrow.cpp
 		-UpArrow.h, UpArrow.cpp
@@ -15,23 +15,31 @@ Files:
 		-ArrowBox.h, ArrowBox.cpp
 		-ArrowSpawner.h, ArrowSpawner.cpp
 		-Combometer.h, Combometer.cpp
+		-CombometerMax.h, CombometerMax.cpp
 		-Player.h, Player.cpp
 		-Boss.h, Boss.cpp
+		-GameStart.h, GameStart.cpp
 	-Audio:
 		-TitleScreen-music.wav(Silly_Feet by David Renda)
 		-Stage2-Song.txt (Stage2-Song.wav (Funny Bit by David Renda))
 		-Stage1-Song.txt (Stage1-Song.wav (Bumping (60 sec. Version) by David Renda))
 		-Stage3-Song.txt (Stage3-Song.wav (8 Bit Surf by David Renda))
+		-correct.wav (pixabay.com - one beep by gamer127)
+		-miss.wav (pixabay.com - SlimeJump by Zuzek06)
+		-select.wav (pixabay.com - Click for game menu by Universfield)
 
 	-Graphics:
 		-arrow-box-sprite.txt
 		-arrow-sprite.txt
 		-boss1-sprite.txt
+		-boss2-sprite.txt
+		-boss3-sprite.txt
 		-down-arrow-sprite.txt
 		-left-arrow-sprite.txt
 		-up-arrow-sprite.txt
 		-right-arrow-sprite.txt
 		-player-sprite.txt
+		-game-start-sprite.txt
 
 Code Structure:
 	-Object
@@ -43,7 +51,8 @@ Code Structure:
 		-ArrowBox
 		-ArrowSpawner
 		-ViewObject
-			- Combometer
-			- CombometerMax
+			-Combometer
+			-CombometerMax
+			-GameStart
 		-Player
 		-Boss
