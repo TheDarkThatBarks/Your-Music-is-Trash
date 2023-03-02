@@ -1,13 +1,6 @@
 #include "GameManager.h"
 #include "LogManager.h"
 #include "ResourceManager.h"
-#include "ArrowBox.h"
-//#include "Arrow.h"
-#include "ArrowSpawner.h"
-#include "Combometer.h"
-#include "CombometerMax.h"
-#include "Player.h"
-#include "Boss.h"
 #include "GameStart.h"
 
 void loadResources();
@@ -20,49 +13,12 @@ int main(int argc, char* argv[]) {
         GM.shutDown();
         return 0;
     }
+    LM.setFlush(false);
 
     // Show splash screen.
     df::splash();
 
-
-    /*// Creates ArrowBoxes
-    RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
-    ArrowBox* left = new ArrowBox(df::Vector(10, 10), LEFT);
-    ArrowBox* up = new ArrowBox(df::Vector(20, 10), UP);
-    ArrowBox* down = new ArrowBox(df::Vector(30, 10), DOWN);
-    ArrowBox* right = new ArrowBox(df::Vector(40, 10), RIGHT);
-
-    // Loads Arrow sprites
-    RM.loadSprite("sprites/left-arrow-sprite.txt", "left-arrow");
-    RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
-    RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
-    RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
-
-    // Creates ArrowSpawner
-    new ArrowSpawner(left, up, down, right, "music/Stage1-Song.txt");
-    //new ArrowSpawner(left, up, down, right, "music/test3.txt");
-
-    // Loads Player and Boss Sprites
-    RM.loadSprite("sprites/player-sprite.txt", "player");
-    RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
-    RM.loadSprite("sprites/boss2-sprite.txt", "boss2");
-    RM.loadSprite("sprites/boss3-sprite.txt", "boss3");
-
-    // Creates Player and Boss
-    new Player((int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-    new Boss("boss1", (int)(1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond());
-
-    // Creates combOmeter(TM) and combOmeterMAX(TM)
-    ArrowSpawner::setCombo(new Combometer());
-    ArrowSpawner::setComboMax(new CombometerMax());
-    
-
-    // Plays music
-    RM.loadMusic("music/Stage1-song.wav", "stage1");
-    RM.getMusic("stage1")->play();*/
     loadResources();
-
-    LM.setFlush(false);
     new GameStart();
 
     GM.run();
@@ -73,18 +29,28 @@ int main(int argc, char* argv[]) {
 
 void loadResources() {
     RM.loadSprite("sprites/arrow-box-sprite.txt", "arrow-box");
+
     RM.loadSprite("sprites/left-arrow-sprite.txt", "left-arrow");
-    RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
     RM.loadSprite("sprites/up-arrow-sprite.txt", "up-arrow");
     RM.loadSprite("sprites/down-arrow-sprite.txt", "down-arrow");
+    RM.loadSprite("sprites/right-arrow-sprite.txt", "right-arrow");
+
     RM.loadSprite("sprites/player-sprite.txt", "player");
+
     RM.loadSprite("sprites/boss1-sprite.txt", "boss1");
     RM.loadSprite("sprites/boss2-sprite.txt", "boss2");
     RM.loadSprite("sprites/boss3-sprite.txt", "boss3");
+
     RM.loadSprite("sprites/game-start-sprite.txt", "game-start");
 
     RM.loadMusic("music/Stage1-song.wav", "stage1");
     RM.loadMusic("music/Stage2-song.wav", "stage2");
     RM.loadMusic("music/Stage3-song.wav", "stage3");
+
     RM.loadMusic("music/TitleScreen-music.wav", "start-music");
+
+    RM.loadSound("sounds/correct.wav", "correct");
+    RM.loadSound("sounds/miss.wav", "miss");
+    RM.loadSound("sounds/select1.wav", "select1");
+    RM.loadSound("sounds/select2.wav", "select2");
 }

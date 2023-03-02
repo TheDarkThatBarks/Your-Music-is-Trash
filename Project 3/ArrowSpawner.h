@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
 #include <queue>
-#include "Object.h"
+#include <vector>
 #include "Event.h"
+#include "Object.h"
 #include "ArrowBox.h"
 #include "Combometer.h"
 #include "CombometerMax.h"

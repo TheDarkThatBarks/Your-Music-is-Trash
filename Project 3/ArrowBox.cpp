@@ -1,14 +1,9 @@
-#include "ArrowBox.h"
-#include "EventCollision.h"
-#include "EventKeyboard.h"
+#include "DisplayManager.h"
 #include "LogManager.h"
-#include "WorldManager.h"
-#include "Combometer.h"
-#include "CombometerMax.h"
+#include "EventKeyboard.h"
 #include "EventView.h"
 #include "ArrowSpawner.h"
-#include "DisplayManager.h"
-#include "Particle.h"
+#include "ArrowBox.h"
 
 ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	setType("ArrowBox");
@@ -32,6 +27,9 @@ ArrowBox::ArrowBox(df::Vector pos, Direction d) {
 	bottomSmall = box;
 	bottomSmall.setCorner(df::Vector(box.getCorner().getX(), box.getCorner().getY() + box.getVertical() - 1));
 	bottomSmall.setVertical(2);
+
+	correct = RM.getSound("correct");
+	miss = RM.getSound("miss");
 
 	setAltitude(0);
 	setSolidness(df::SOFT);
@@ -80,21 +78,19 @@ int ArrowBox::eventHandler(const df::Event* p_e) {
 			std::string score = "MISS";
 
 			// Checks if arrow meets PERFECT or GOOD criteria and updates the combOmeter(TM)
-
 			df::Box arrowBox = df::getWorldBox(arrow);
-			printf("%f %f %f %f\n", arrowBox.getCorner().getX(), arrowBox.getCorner().getY(), arrowBox.getHorizontal(), arrowBox.getVertical());
-			printf("%f %f %f %f\n", topSmall.getCorner().getX(), topSmall.getCorner().getY(), topSmall.getHorizontal(), topSmall.getVertical());
-			printf("%f %f %f %f\n", topBig.getCorner().getX(), topBig.getCorner().getY(), topBig.getHorizontal(), topBig.getVertical());
 			if (df::boxIntersectsBox(arrowBox, topSmall) && df::boxIntersectsBox(arrowBox, bottomSmall)) {
 				score = "PERFECT";
 				WM.onEvent(new df::EventView(COMBO_STRING, 2, true));
 				DM.shake(1, 1, 10, false);
+				correct->play();
 			} else if (df::boxIntersectsBox(arrowBox, topBig) && df::boxIntersectsBox(arrowBox, bottomBig)) {
 				score = "GOOD";
 				WM.onEvent(new df::EventView(COMBO_STRING, 1, true));
-				//df::addParticles(df::SPARKS, getPosition(), 1.0f, df::RED);
+				correct->play();
 			} else {
 				WM.onEvent(new df::EventView(COMBO_STRING, 0, false));
+				miss->play();
 			}
 			if (ArrowSpawner::getCombo()->getValue() > ArrowSpawner::getComboMax()->getValue())
 				WM.onEvent(new df::EventView(MAX_COMBO_STRING, ArrowSpawner::getCombo()->getValue(), false));

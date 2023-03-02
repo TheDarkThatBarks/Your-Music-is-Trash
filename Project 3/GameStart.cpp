@@ -1,20 +1,22 @@
 #include <fstream>
+#define NOMINMAX
+#include <Windows.h>
 #include "GameManager.h"
 #include "ResourceManager.h"
 #include "WorldManager.h"
 #include "EventKeyboard.h"
-#include "GameStart.h"
 #include "ArrowBox.h"
 #include "ArrowSpawner.h"
-#include "Player.h"
 #include "Boss.h"
-//#include "ViewObject.h"
+#include "Player.h"
+#include "GameStart.h"
 
 GameStart::GameStart() {
 	setType("GameStart");
 	setLocation(df::CENTER_CENTER);
 	setSprite("game-start");
 	music = RM.getMusic("start-music");
+	sound = RM.getSound("select1");
 	level = 0;
 	combo1 = 0;
 	combo2 = 0;
@@ -25,6 +27,10 @@ GameStart::GameStart() {
 }
 
 void GameStart::start(int l) {
+	sound->play();
+	Sleep(1000);
+
+	// Deletes all ViewObjects
 	df::ObjectList list = WM.getAllObjects(false);
 	df::ObjectListIterator li(&list);
 	for (li.first(); !li.isDone(); li.next()) {
@@ -32,7 +38,6 @@ void GameStart::start(int l) {
 		if (p_o->getType() == "ViewObject")
 			WM.markForDelete(p_o);
 	}
-
 	level = l;
 
 	// Creates ArrowBoxes
@@ -44,10 +49,12 @@ void GameStart::start(int l) {
 	// Creates ArrowSpawner
 	new ArrowSpawner(left, up, down, right, "music/Stage" + std::to_string(level) + "-Song.txt");
 
+	// Creates Player and Boss
 	new Player((int) round((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
 	Boss* boss = new Boss("boss" + std::to_string(level), (int) round((1000.0 / GM.getFrameTime()) / ArrowSpawner::getBeatsPerSecond()));
 	boss->setPosition(df::Vector((float)(60 + (level == 3 ? 10 : 0)), 15));
 
+	// Sets up ArrowSpawner variables
 	ArrowSpawner::setCombo(new Combometer());
 	ArrowSpawner::setComboMax(new CombometerMax());
 	ArrowSpawner::setGameStart(this);
@@ -59,6 +66,8 @@ void GameStart::start(int l) {
 }
 
 void GameStart::stop() {
+
+	// Deletes all Game Objects
 	df::ObjectList list = WM.getAllObjects(false);
 	df::ObjectListIterator li(&list);
 	int combo = -1;
@@ -73,6 +82,8 @@ void GameStart::stop() {
 	levelMusic->stop();
 	setActive(true);
 	playMusic();
+
+	// Saves high scores
 	std::ifstream input;
 	input.open("maxCombos.txt");
 	input >> combo1 >> combo2 >> combo3;
@@ -141,6 +152,7 @@ int GameStart::eventHandler(const df::Event* p_e) {
 				start(3);
 				break;
 			case df::Keyboard::ESCAPE:
+				sound->play();
 				GM.setGameOver();
 				break;
 			default:

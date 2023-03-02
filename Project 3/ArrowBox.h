@@ -1,8 +1,11 @@
 #pragma once
 
 #include <queue>
-#include "Object.h"
+#include "ResourceManager.h"
+#include "WorldManager.h"
 #include "Event.h"
+#include "Object.h"
+#include "Sound.h"
 
 class Arrow;
 
@@ -21,6 +24,8 @@ class ArrowBox : public df::Object {
 	df::Box bottomBig;
 	df::Box bottomSmall;
 	std::queue<Arrow*> arrowQueue;
+	df::Sound* correct;
+	df::Sound* miss;
 
 	public:
 	ArrowBox() {};
@@ -31,6 +36,9 @@ class ArrowBox : public df::Object {
 };
 
 class Arrow : public df::Object {
+	private:
+	df::Sound* miss;
+
 	protected:
 	ArrowBox* box;
 

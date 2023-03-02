@@ -1,14 +1,14 @@
 #include <fstream>
 #define NOMINMAX
 #include <Windows.h>
-#include "ArrowSpawner.h"
-#include "EventStep.h"
-#include "LeftArrow.h"
-#include "RightArrow.h"
-#include "UpArrow.h"
-#include "DownArrow.h"
 #include "GameManager.h"
 #include "EventKeyboard.h"
+#include "EventStep.h"
+#include "LeftArrow.h"
+#include "UpArrow.h"
+#include "DownArrow.h"
+#include "RightArrow.h"
+#include "ArrowSpawner.h"
 
 float ArrowSpawner::beatsPerSecond;
 Combometer* ArrowSpawner::combo;
