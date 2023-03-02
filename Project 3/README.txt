@@ -19,9 +19,9 @@ Files:
 		-Boss.h, Boss.cpp
 	-Audio:
 		-TitleScreen-music.wav(Silly_Feet by David Renda)
-		-Stage3-Song.txt (Stage3-Song.wav (8 Bit Surf by David Renda))
 		-Stage2-Song.txt (Stage2-Song.wav (Funny Bit by David Renda))
 		-Stage1-Song.txt (Stage1-Song.wav (Bumping (60 sec. Version) by David Renda))
+		-Stage3-Song.txt (Stage3-Song.wav (8 Bit Surf by David Renda))
 
 	-Graphics:
 		-arrow-box-sprite.txt
@@ -43,6 +43,7 @@ Code Structure:
 		-ArrowBox
 		-ArrowSpawner
 		-ViewObject
-			- Combomemeter
+			- Combometer
+			- CombometerMax
 		-Player
 		-Boss
